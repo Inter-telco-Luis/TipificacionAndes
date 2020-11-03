@@ -1,0 +1,103 @@
+﻿[PMC Code v5.3.3]|F4||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro1
+Context=None||None|
+Groups=Start:1
+1|[Assign Variable]|pathImg := C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\|1|0|Variable|Expression||||1|
+2|[Assign Variable]|pathDescargas := C:\Users\Inter-Telco\Downloads\|1|0|Variable|Expression||||2|
+3|loginDyn|_null := pathImg|1|0|Function|||||3|
+4|[Pause]||1|1000|Sleep|||||4|
+5|filterCasosSinTipificar|_null := pathImg|1|0|Function|||||5|
+6|[Pause]||1|1000|Sleep|||||6|
+7|openCaso|_null := pathImg|1|0|Function|||||7|
+8|[Pause]||1|1000|Sleep|||||8|
+
+[PMC Code v5.3.3]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|loginDyn()
+Context=None||None|
+Groups=Start:1
+1|[FuncParameter]|pathImg|1|0|FuncParameter|||||1|
+2|[FunctionStart]|loginDyn|1|0|UserFunction|Local| / |||1|
+3|Method:Navigate:|https://gco.crm2.dynamics.com/|1|0|IECOM_Set|:|LoadWait|||3|
+4|[Pause]||1|1000|Sleep|||||8|
+5|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201026134013.png|1|0|ImageSearch|UntilFound|Window|||9|
+6|[Pause]||1|1000|Sleep|||||18|
+7|Continue, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201026111006.png|1|0|ImageSearch||Window|||19|
+8|If Image/Pixel Found||1|0|If_Statement|||||22|
+9|[Pause]||1|500|Sleep|||||24|
+10|[Assign Variable]|userDynamics := agentecrm2.ext@gco.com.co|1|0|Variable|||||25|
+11|[Assign Variable]|passwordDynamics := Ag3nt3_2018*|1|0|Variable|||||26|
+12|Num Dot|{NumpadDot}|1|0|Send|||||27|
+13|[Pause]||1|1000|Sleep|||||28|
+14|Backspace|{Backspace}|1|0|Send|||||29|
+15|[Pause]||1|1000|Sleep|||||30|
+16|Property:InnerText:TagName|%userDynamics%|1|0|IECOM_Set|INPUT:0||||31|
+17|[Pause]||1|1000|Sleep|||||32|
+18|Enter|{Enter}|1|0|Send|||||33|
+19|[Pause]||1|1000|Sleep|||||34|
+20|Property:InnerText:TagName|%passwordDynamics%|1|0|IECOM_Set|INPUT:9||||35|
+21|[Pause]||1|1000|Sleep|||||36|
+22|Enter|{Enter}|1|0|Send|||||37|
+23|[Pause]||1|3000|Sleep|||||38|
+24|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201026154933.png|1|0|ImageSearch|UntilFound|Window|||39|
+25|[Else]|Else|1|0|If_Statement|||||48|
+26|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||51|
+27|[MsgBox]|no se encuentra imagen "Iniciar"|1|2|MsgBox|0||||53|
+28|[End If]|EndIf|1|0|If_Statement|||||54|
+
+[PMC Code v5.3.3]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|filterCasosSinTipificar()
+Context=None||None|
+Groups=Start:1
+1|[FuncParameter]|pathImg|1|0|FuncParameter|||||1|
+2|[FunctionStart]|filterCasosSinTipificar|1|0|UserFunction|Local| / |||1|
+3|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201026155810.png|1|0|ImageSearch||Window|||3|
+4|If Image/Pixel Not Found||1|0|If_Statement|||||5|
+5|[Pause]||1|2000|Sleep|||||7|
+6|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201026155635.png|1|0|ImageSearch|UntilFound|Window|||8|
+7|[Pause]||1|1000|Sleep|||||17|
+8|[LoopStart]|LoopStart|10|0|Loop|||||18|
+9|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201027113907.png|1|100|ImageSearch||Window|||20|
+10|If Image/Pixel Found||1|0|If_Statement|||||23|
+11|[Pause]||1|1000|Sleep|||||25|
+12|Break||1|0|Break|||||26|
+13|[End If]|EndIf|1|0|If_Statement|||||27|
+14|[Pause]||1|1000|Sleep|||||28|
+15|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||29|
+16|[LoopEnd]|LoopEnd|1|0|Loop|||||31|
+17|[LoopStart]|LoopStart|5|0|Loop|||||32|
+18|[Pause]||1|2000|Sleep|||||34|
+19|End|{End}|1|100|Send|||||35|
+20|[Pause]||1|2000|Sleep|||||37|
+21|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201027134901.png|1|0|ImageSearch||Window|||38|
+22|[Pause]||1|2000|Sleep|||||43|
+23|If Image/Pixel Found||1|0|If_Statement|||||44|
+24|Break||1|0|Break|||||46|
+25|[End If]|EndIf|1|0|If_Statement|||||47|
+26|[LoopEnd]|LoopEnd|1|0|Loop|||||48|
+27|[Else]|Else|1|0|If_Statement|||||49|
+28|[MsgBox]|No se encontro imagen de "Vista del sistema"|1|0|MsgBox|0||||52|
+29|[End If]|EndIf|1|0|If_Statement|||||53|
+
+[PMC Code v5.3.3]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|openCaso()
+Context=None||None|
+Groups=Start:1
+1|[FuncParameter]|pathImg|1|0|FuncParameter|||||1|
+2|[FunctionStart]|openCaso|1|0|UserFunction|Local| / |||1|
+3|[Pause]||1|1000|Sleep|||||3|
+4|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201027143217.png|1|100|ImageSearch|UntilFound|Window|||4|
+5|[Pause]||1|2000|Sleep|||||14|
+6|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201027143415.png|2|100|ImageSearch|UntilFound|Window|||15|
+7|[Pause]||1|100|Sleep|||||25|
+8|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|0|Click|||||26|
+9|[Pause]||1|1000|Sleep|||||27|
+10|Continue, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\AndeBPO2da Automatizacion\Img\Screen_20201028081323.png|1|100|ImageSearch|UntilFound|Window|||28|
+11|[Pause]||1|1000|Sleep|||||36|
+12|Control + a|{Control Down}{a}{Control Up}|1|0|Send|||||37|
+13|[Pause]||1|4000|Sleep|||||38|
+14|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||||39|
+15|[Pause]||1|1000|Sleep|||||40|
+16|[Assign Variable]|textMsg := []|1|0|Variable|Expression||||41|
+17|[LoopStart]|Clipboard`, `n`, %A_Space%``, A_Tab``,`n``,`r|1|0|LoopParse|||||42|
+18|Compare Variables|A_LoopField != |1|0|If_Statement|||||44|
+19|Push|_null := A_LoopField|1|0|Method|textMsg||||46|
+20|[MsgBox]|%textMsg%|1|0|MsgBox|0||||47|
+21|[End If]|EndIf|1|0|If_Statement|||||48|
+22|[LoopEnd]|LoopEnd|1|0|Loop|||||49|
+
