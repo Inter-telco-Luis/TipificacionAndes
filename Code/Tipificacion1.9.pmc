@@ -97,10 +97,10 @@ Groups=Start:1
 14|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||||39|
 15|[Pause]||1|1000|Sleep|||||40|
 16|[Assign Variable]|textMsg := []|1|0|Variable|Expression||||41|
-17|[LoopStart]|Clipboard`, `n`, %A_Space%``, A_Tab``,`n``,`r|1|0|LoopParse|||||42|
-18|Compare Variables|A_LoopField != |1|0|If_Statement|||||44|
-19|Push|_null := A_LoopField|1|0|Method|textMsg||||46|
-20|[MsgBox]|%textMsg%|1|0|MsgBox|0||||47|
+17|[LoopStart]|Clipboard`, `n`, %A_Space%``,%A_Tab%``,`n``,`r|1|0|LoopParse|||||42|
+18|[MsgBox]|%A_LoopField%|1|0|MsgBox|0||||44|
+19|Evaluate Expression|A_LoopField != " "  A_LoopFiled != ""|1|0|If_Statement|||||45|
+20|Push|_null := A_LoopField|1|0|Method|textMsg||||47|
 21|[End If]|EndIf|1|0|If_Statement|||||48|
 22|[LoopEnd]|LoopEnd|1|0|Loop|||||49|
 
