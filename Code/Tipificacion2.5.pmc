@@ -59,25 +59,26 @@ Groups=Start:1
 8|[LoopStart]|LoopStart|10|0|Loop|||||18|
 9|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, %pathImg%Screen_20201027113907.png|1|100|ImageSearch||Window|||20|
 10|If Image/Pixel Found||1|0|If_Statement|||||23|
-11|[Pause]||1|1000|Sleep|||||25|
-12|Break||1|0|Break|||||26|
-13|[End If]|EndIf|1|0|If_Statement|||||27|
-14|[Pause]||1|1000|Sleep|||||28|
-15|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||29|
-16|[LoopEnd]|LoopEnd|1|0|Loop|||||31|
-17|[LoopStart]|LoopStart|5|0|Loop|||||32|
-18|[Pause]||1|2000|Sleep|||||34|
-19|End|{End}|1|100|Send|||||35|
-20|[Pause]||1|2000|Sleep|||||37|
-21|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201027134901.png|1|0|ImageSearch||Window|||38|
-22|[Pause]||1|2000|Sleep|||||43|
-23|If Image/Pixel Found||1|0|If_Statement|||||44|
-24|Break||1|0|Break|||||46|
-25|[End If]|EndIf|1|0|If_Statement|||||47|
-26|[LoopEnd]|LoopEnd|1|0|Loop|||||48|
-27|[Else]|Else|1|0|If_Statement|||||49|
-28|[MsgBox]|No se encontro imagen de "Vista del sistema"|1|0|MsgBox|0||||52|
-29|[End If]|EndIf|1|0|If_Statement|||||53|
+11|[MsgBox]|si encontre imagen Vistas del sistema|1|0|MsgBox|0||||25|
+12|[Pause]||1|1000|Sleep|||||26|
+13|Break||1|0|Break|||||27|
+14|[End If]|EndIf|1|0|If_Statement|||||28|
+15|[Pause]||1|1000|Sleep|||||29|
+16|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||30|
+17|[LoopEnd]|LoopEnd|1|0|Loop|||||32|
+18|[LoopStart]|LoopStart|5|0|Loop|||||33|
+19|[Pause]||1|2000|Sleep|||||35|
+20|End|{End}|1|100|Send|||||36|
+21|[Pause]||1|2000|Sleep|||||38|
+22|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201027134901.png|1|0|ImageSearch||Window|||39|
+23|[Pause]||1|2000|Sleep|||||44|
+24|If Image/Pixel Found||1|0|If_Statement|||||45|
+25|Break||1|0|Break|||||47|
+26|[End If]|EndIf|1|0|If_Statement|||||48|
+27|[LoopEnd]|LoopEnd|1|0|Loop|||||49|
+28|[Else]|Else|1|0|If_Statement|||||50|
+29|[MsgBox]|No se encontro imagen de "Vista del sistema"|1|0|MsgBox|0||||53|
+30|[End If]|EndIf|1|0|If_Statement|||||54|
 
 [PMC Code v5.3.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|openCaso()
 Context=None|
@@ -100,7 +101,12 @@ Groups=Start:1
 16|ServicePython|tipificacion := Clipboard|1|0|Function|||||41|
 17|[Pause]||1|1000|Sleep|||||42|
 018|[MsgBox]|%tipificacion%|1|0|MsgBox|0||||43|
-19|fillForm|_null := tipificacion|1|0|Function|||||45|
+19|[CommentBlock]|En este if se verifica si se logro tipificar el mensaje, ya que si no se encontro la plantilla body> en el mensaje|0|1|CommentBlock|||||45|
+20|Evaluate Expression|%tipificacion%!="Motivo de Consulta,Negocio,Tipología 3,Tipología 4"|1|0|If_Statement|||||49|
+21|fillForm|_null := tipificacion|1|0|Function|||||51|
+22|[Else]|Else|1|0|If_Statement|||||52|
+23|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111165607.png|1|100|ImageSearch|UntilFound|Window|||55|
+24|[End If]|EndIf|1|0|If_Statement|||||65|
 
 [PMC Code v5.3.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|ServicePython()
 Context=None|
@@ -138,22 +144,32 @@ Groups=Start:1
 1|[FuncParameter]|tipificacion|1|0|FuncParameter|||||1|
 2|[FunctionStart]|fillForm|1|0|UserFunction|Global| / |||1|
 03|[MsgBox]|%tipificacion%|1|0|MsgBox|0||||4|
-4|[LoopStart]|tipificacion`, ``,`, |1|0|LoopParse|||||6|
-5|[MsgBox]|%A_LoopField%`,%A_Index%|1|0|MsgBox|0||||9|
-6|[Pause]||1|1000|Sleep|||||10|
-7|[Assign Variable]|Clipboard := %A_LoopField%|1|0|Variable|||||11|
-8|Evaluate Expression|%A_Index%==1|1|0|If_Statement|||||12|
-9|[Pause]||1|1000|Sleep|||||14|
-10|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111150113.png|1|100|ImageSearch|UntilFound|Window|||15|
-11|[ElseIf] Evaluate Expression|%A_Index%==2|1|0|If_Statement|||||25|
+4|[Pause]||1|1000|Sleep|||||6|
+5|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111155105.png|1|100|ImageSearch|UntilFound|Window|||8|
+6|[Pause]||1|1000|Sleep|||||18|
+7|[LoopStart]|tipificacion`, ``,`, |1|0|LoopParse|||||19|
+08|[MsgBox]|%A_LoopField%`,%A_Index%|1|0|MsgBox|0||||21|
+9|[Pause]||1|1000|Sleep|||||23|
+10|[Assign Variable]|Clipboard := %A_LoopField%|1|0|Variable|||||25|
+11|Evaluate Expression|%A_Index%==1|1|0|If_Statement|||||26|
 12|[Pause]||1|1000|Sleep|||||28|
-13|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111150432.png|1|100|ImageSearch|UntilFound|Window|||29|
-14|[ElseIf] Evaluate Expression|%A_Index%==3|1|0|If_Statement|||||39|
+13|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111160804.png|1|100|ImageSearch|UntilFound|Window|||29|
+14|[ElseIf] Evaluate Expression|%A_Index%==2|1|0|If_Statement|||||39|
 15|[Pause]||1|1000|Sleep|||||42|
-16|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111150512.png|1|100|ImageSearch|UntilFound|Window|||43|
-17|[ElseIf] Evaluate Expression|%A_Index%==4|1|0|If_Statement|||||53|
-18|[End If]|EndIf|1|0|If_Statement|||||56|
-19|[Pause]||1|1000|Sleep|||||57|
-20|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||58|
-21|[LoopEnd]|LoopEnd|1|0|Loop|||||60|
+16|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111160944.png|1|100|ImageSearch|UntilFound|Window|||43|
+17|[ElseIf] Evaluate Expression|%A_Index%==3|1|0|If_Statement|||||53|
+18|[Pause]||1|1000|Sleep|||||56|
+19|Left Click, Continue, FoundX, FoundY, 1|En este if se verifica si se logro tipificar el mensaje, ya que si no se encontro la plantilla body> en el mensaje, entonces no se logra tipificar, sin embargo esto no es un inconveniente, ya que cuando esta etiqueta este presente en este mensaje ya se puede tipificar, ets|0|1|CommentBlock|UntilFound|Window|Si el resultado del analisis del texto del mensaje es Motivo de Consulta,Negocio,Tipología 3,Tipología 4 entonces no se logra tipificar con las acutales condiciones que exigen que body> sea una cadena presente en el mensaje y que al parecer despues de que el usuario envia el mensaje a la plataforma Dynamics tarda en colocarse esta plantilla body>||57|
+20|[ElseIf] Evaluate Expression|%A_Index%==4|1|0|If_Statement|||||67|
+21|[Pause]||1|1000|Sleep|||||70|
+22|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111161021.png|1|100|ImageSearch|UntilFound|Window|||71|
+23|[End If]|EndIf|1|0|If_Statement|||||81|
+24|[Pause]||1|1000|Sleep|||||82|
+25|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||83|
+26|[Pause]||1|1000|Sleep|||||85|
+27|Enter|{Enter}|1|100|Send|||||86|
+28|[Pause]||1|1000|Sleep|||||88|
+029|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111163739.png|1|100|ImageSearch|UntilFound|Window|||89|
+30|Enter|{Enter}|1|100|Send|||||100|
+31|[LoopEnd]|LoopEnd|1|0|Loop|||||103|
 
