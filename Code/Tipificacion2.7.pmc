@@ -53,7 +53,7 @@ Groups=Start:1
 2|[FunctionStart]|filterCasosSinTipificar|1|0|UserFunction|Local| / |||1|
 3|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, %pathImg%Screen_20201026155810.png|1|0|ImageSearch||Window|||3|
 4|If Image/Pixel Not Found||1|0|If_Statement|||||5|
-5|[Pause]||1|2000|Sleep|||||7|
+5|[Pause]||1|3000|Sleep|||||7|
 6|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201026155635.png|1|0|ImageSearch|UntilFound|Window|||8|
 7|[Pause]||1|1000|Sleep|||||17|
 8|[LoopStart]|LoopStart|10|0|Loop|||||18|
@@ -63,23 +63,25 @@ Groups=Start:1
 12|[Pause]||1|1000|Sleep|||||27|
 13|Break||1|0|Break|||||29|
 14|[End If]|EndIf|1|0|If_Statement|||||30|
-15|[MsgBox]|aun sigo en el bucle|1|0|MsgBox|0||||31|
-16|[Pause]||1|1000|Sleep|||||32|
-17|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||33|
-18|[LoopEnd]|LoopEnd|1|0|Loop|||||35|
-19|[LoopStart]|LoopStart|5|0|Loop|||||36|
-20|[Pause]||1|2000|Sleep|||||38|
-21|End|{End}|1|100|Send|||||39|
-22|[Pause]||1|2000|Sleep|||||41|
-23|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201027134901.png|1|0|ImageSearch||Window|||42|
-24|[Pause]||1|2000|Sleep|||||47|
-25|If Image/Pixel Found||1|0|If_Statement|||||48|
-26|Break||1|0|Break|||||50|
-27|[End If]|EndIf|1|0|If_Statement|||||51|
-28|[LoopEnd]|LoopEnd|1|0|Loop|||||52|
-29|[Else]|Else|1|0|If_Statement|||||53|
-30|[MsgBox]|No se encontro imagen de "Vista del sistema"|1|0|MsgBox|0||||56|
-31|[End If]|EndIf|1|0|If_Statement|||||57|
+015|[MsgBox]|aun sigo en el bucle|1|0|MsgBox|0||||31|
+16|[Pause]||1|1000|Sleep|||||33|
+017|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201026155635.png|1|0|ImageSearch||Window|||35|
+18|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||41|
+19|[Pause]||1|1000|Sleep|||||44|
+20|[LoopEnd]|LoopEnd|1|0|Loop|||||45|
+21|[LoopStart]|LoopStart|5|0|Loop|||||46|
+22|[Pause]||1|2000|Sleep|||||48|
+23|End|{End}|1|100|Send|||||49|
+24|[Pause]||1|2000|Sleep|||||51|
+25|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201027134901.png|1|0|ImageSearch||Window|||52|
+26|[Pause]||1|2000|Sleep|||||57|
+27|If Image/Pixel Found||1|0|If_Statement|||||58|
+28|Break||1|0|Break|||||60|
+29|[End If]|EndIf|1|0|If_Statement|||||61|
+30|[LoopEnd]|LoopEnd|1|0|Loop|||||62|
+31|[Else]|Else|1|0|If_Statement|||||63|
+32|[MsgBox]|No se encontro imagen de "Vista del sistema"|1|0|MsgBox|0||||66|
+33|[End If]|EndIf|1|0|If_Statement|||||67|
 
 [PMC Code v5.3.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|openCaso()
 Context=None|
@@ -103,11 +105,13 @@ Groups=Start:1
 17|[Pause]||1|1000|Sleep|||||42|
 018|[MsgBox]|%tipificacion%|1|0|MsgBox|0||||43|
 19|[CommentBlock]|En este if se verifica si se logro tipificar el mensaje, ya que si no se encontro la plantilla body> en el mensaje|0|1|CommentBlock|||||45|
-20|Evaluate Expression|%tipificacion% == Motivo de Consulta,Negocio,Tipología 3,Tipología 4|1|0|If_Statement|||||49|
+20|Evaluate Expression|%tipificacion% == "Motivo de Consulta,Negocio,Tipología 3,Tipología 4"|1|0|If_Statement|||||49|
 21|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111165607.png|1|100|ImageSearch|UntilFound|Window|||51|
-22|[Else]|Else|1|0|If_Statement|||||61|
-23|fillForm|_null := tipificacion|1|0|Function|||||64|
-24|[End If]|EndIf|1|0|If_Statement|||||65|
+22|[Pause]||1|1000|Sleep|||||61|
+23|[Else]|Else|1|0|If_Statement|||||62|
+24|fillForm|_null := tipificacion|1|0|Function|||||65|
+25|[Pause]||1|1000|Sleep|||||66|
+26|[End If]|EndIf|1|0|If_Statement|||||67|
 
 [PMC Code v5.3.5]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|ServicePython()
 Context=None|
