@@ -1,0 +1,479 @@
+﻿[PMC Globals]|None||
+[PMC Code v5.3.7]|F4||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Macro1
+Context=None|
+Groups=Start:1
+1|[Assign Variable]|pathImg := C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\|1|0|Variable|||||1|
+2|[Assign Variable]|pathDescargas := C:\Users\Inter-Telco\Downloads\|1|0|Variable|||||2|
+03|[MsgBox]|%pathDescargas%|1|0|MsgBox|0||||3|
+4|loginDyn|_null := pathImg|1|0|Function|||||5|
+5|[Pause]||1|1000|Sleep|||||7|
+6|filterCasosSinTipificar|_null := pathImg|1|0|Function|||||8|
+7|[Pause]||1|1000|Sleep|||||9|
+8|openCaso|_null := pathImg|1|0|Function|||||10|
+9|[Pause]||1|1000|Sleep|||||11|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|loginDyn()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|pathImg|1|0|FuncParameter|||||1|
+2|[FunctionStart]|loginDyn|1|0|UserFunction|Local| / |||1|
+3|[Assign Variable]|textIniSes := ""|1|0|Variable|||||3|
+4|[Assign Variable]|divTextIni := 0|1|0|Variable|||||4|
+05|[MsgBox]|%pathImg%|1|0|MsgBox|0||||5|
+6|Method:Navigate:|https://gco.crm2.dynamics.com/|1|0|IECOM_Set|:|LoadWait|||7|
+7|[Pause]||1|2000|Sleep|||||13|
+8|[LoopStart]|LoopStart|100|0|Loop|||||14|
+9|Property:InnerText:TagName|textIniSes|1|0|IECOM_Get|DIV:%A_Index%||||16|
+10|Evaluate Expression|textIniSes=="Usar otra cuenta"|1|0|If_Statement|||||17|
+011|[MsgBox]|%textIniSes%`,%A_Index%|1|0|MsgBox|0||||19|
+12|[Assign Variable]|divTextIni := %A_Index%|1|0|Variable|||||21|
+13|Break||1|0|Break|||||23|
+14|[End If]|EndIf|1|0|If_Statement|||||24|
+15|[LoopEnd]|LoopEnd|1|0|Loop|||||25|
+016|[MsgBox]|%divTextIni%|1|0|MsgBox|0||||26|
+17|Method:Click:TagName||1|0|IECOM_Set|DIV:%divTextIni%||||28|
+018|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201026134013.png|1|0|ImageSearch|UntilFound|Window|||30|
+19|[Pause]||1|2000|Sleep|||||40|
+20|Continue, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201120162658.png|1|0|ImageSearch||Window|||42|
+21|[Assign Variable]|inicioSesion1 := %ErrorLevel%|1|0|Variable|||||45|
+22|Continue, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201126133742.png|1|0|ImageSearch||Window|||46|
+23|[Assign Variable]|iniSes2 := %ErrorLevel%|1|0|Variable|||||49|
+24|[CommentBlock]|se agrega banderas que almacenan le encuentro o no de la imagenes de inicio de sesion para dos casos posibles|0|1|CommentBlock|||||50|
+25|Evaluate Expression|inicioSesion1 ==0  iniSes2 ==0|1|0|If_Statement|||||53|
+26|[Pause]||1|500|Sleep|||||55|
+27|[Assign Variable]|userDynamics := agentecrm2.ext@gco.com.co|1|0|Variable|||||56|
+28|[Assign Variable]|passwordDynamics := Ag3nt3_2018*|1|0|Variable|||||57|
+29|Num Dot|{NumpadDot}|1|0|Send|||||58|
+30|[Pause]||1|1000|Sleep|||||59|
+31|Backspace|{Backspace}|1|0|Send|||||60|
+32|[Pause]||1|1000|Sleep|||||61|
+33|Property:InnerText:TagName|%userDynamics%|1|0|IECOM_Set|INPUT:0||||62|
+34|[Pause]||1|1000|Sleep|||||63|
+35|Enter|{Enter}|1|0|Send|||||64|
+36|[Pause]||1|1000|Sleep|||||65|
+37|Property:InnerText:TagName|%passwordDynamics%|1|0|IECOM_Set|INPUT:9||||66|
+38|[Pause]||1|1000|Sleep|||||67|
+39|Enter|{Enter}|1|0|Send|||||68|
+40|[Pause]||1|3000|Sleep|||||69|
+41|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201126121533.png|1|0|ImageSearch||Window|||70|
+42|If Image/Pixel Found||1|0|If_Statement|||||72|
+43|[Pause]||1|1000|Sleep|||||74|
+44|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201126121633.png|1|0|ImageSearch|UntilFound|Window|||75|
+45|[Pause]||1|1000|Sleep|||||84|
+46|Method:Click:TagName||1|0|IECOM_Set|INPUT:7||||85|
+47|[End If]|EndIf|1|0|If_Statement|||||86|
+48|[Pause]||1|1000|Sleep|||||87|
+49|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201123095258.png|1|0|ImageSearch|UntilFound|Window|||88|
+50|[Pause]||1|2000|Sleep|||||97|
+51|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201123163311.png|1|0|ImageSearch|UntilFound|Window|||98|
+52|[Pause]||1|1000|Sleep|||||107|
+53|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201123095440.png|1|0|ImageSearch|UntilFound|Window|||108|
+54|[Pause]||1|1000|Sleep|||||117|
+55|[Else]|Else|1|0|If_Statement|||||118|
+56|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201123115758.png|1|0|ImageSearch|UntilFound|Window|||121|
+57|[Pause]||1|3000|Sleep|||||130|
+58|loginDyn|_null := pathImg|1|0|Function|||||131|
+059|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||132|
+060|[MsgBox]|no se encuentra imagen "Iniciar"|1|2|MsgBox|0||||135|
+61|[End If]|EndIf|1|0|If_Statement|||||136|
+062|[MsgBox]|%pathImg%|1|0|MsgBox|0||||138|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|filterCasosSinTipificar()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|pathImg|1|0|FuncParameter|||||1|
+2|[FunctionStart]|filterCasosSinTipificar|1|0|UserFunction|Local| / |||1|
+3|[Pause]||1|1000|Sleep|||||3|
+4|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201124080522.png|1|0|ImageSearch|UntilFound|Window|||4|
+05|[MsgBox]|voy a buscar imagen sin tipificar|1|0|MsgBox|0||||13|
+6|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, %pathImg%Screen_20201026155810.png|1|0|ImageSearch||Window|||15|
+7|If Image/Pixel Not Found||1|0|If_Statement|||||18|
+8|[Pause]||1|3000|Sleep|||||20|
+9|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201026155635.png|1|0|ImageSearch|UntilFound|Window|||21|
+10|[Pause]||1|1000|Sleep|||||30|
+11|[LoopStart]|LoopStart|10|0|Loop|||||31|
+12|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201027113907.png|1|100|ImageSearch||Window|||33|
+13|If Image/Pixel Found||1|0|If_Statement|||||39|
+014|[MsgBox]|si encontre imagen Vistas del sistema|1|0|MsgBox|0||||41|
+15|[Pause]||1|1000|Sleep|||||43|
+16|Break||1|0|Break|||||45|
+17|[End If]|EndIf|1|0|If_Statement|||||46|
+018|[MsgBox]|aun sigo en el bucle|1|0|MsgBox|0||||47|
+19|[Pause]||1|1000|Sleep|||||49|
+020|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201026155635.png|1|0|ImageSearch||Window|||51|
+21|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||57|
+22|[Pause]||1|1000|Sleep|||||60|
+23|[LoopEnd]|LoopEnd|1|0|Loop|||||61|
+24|[LoopStart]|LoopStart|5|0|Loop|||||62|
+25|[Pause]||1|2000|Sleep|||||64|
+26|End|{End}|1|100|Send|||||65|
+27|[Pause]||1|2000|Sleep|||||67|
+28|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201027134901.png|1|0|ImageSearch||Window|||68|
+29|[Pause]||1|2000|Sleep|||||73|
+30|If Image/Pixel Found||1|0|If_Statement|||||74|
+31|Break||1|0|Break|||||76|
+32|[End If]|EndIf|1|0|If_Statement|||||77|
+33|[LoopEnd]|LoopEnd|1|0|Loop|||||78|
+34|[Else]|Else|1|0|If_Statement|||||79|
+35|[MsgBox]|No se encontro imagen de "Vista del sistema"|1|0|MsgBox|0||||82|
+36|[End If]|EndIf|1|0|If_Statement|||||83|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|openCaso()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|pathImg|1|0|FuncParameter|||||1|
+2|[FunctionStart]|openCaso|1|0|UserFunction|Local| / |||1|
+03|[Pause]||1|1000|Sleep|||||3|
+04|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201027143217.png|1|100|ImageSearch|UntilFound|Window|||5|
+5|[Pause]||1|2000|Sleep|||||15|
+6|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201027143415.png|2|100|ImageSearch|UntilFound|Window|||17|
+7|[Pause]||1|100|Sleep|||||27|
+8|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|0|Click|||||28|
+9|[Pause]||1|1000|Sleep|||||29|
+10|Continue, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, %pathImg%Screen_20201028081323.png|1|100|ImageSearch|UntilFound|Window|||30|
+11|[Pause]||1|1000|Sleep|||||38|
+12|Control + a|{Control Down}{a}{Control Up}|1|0|Send|||||39|
+13|[Pause]||1|4000|Sleep|||||40|
+14|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||||41|
+15|[Pause]||1|1000|Sleep|||||42|
+16|ServicePython|tipificacion := Clipboard|1|0|Function|||||43|
+17|[Pause]||1|1000|Sleep|||||44|
+018|[MsgBox]|%tipificacion%|1|0|MsgBox|0||||45|
+19|[CommentBlock]|En este if se verifica si se logro tipificar el mensaje, ya que si no se encontro la plantilla body> en el mensaje|0|1|CommentBlock|||||47|
+20|Evaluate Expression|tipificacion =="Motivo de Consulta,Negocio,Tipología 3,Tipología 4,CPC/Escala"|1|0|If_Statement|||||51|
+21|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111165607.png|1|100|ImageSearch|UntilFound|Window|||53|
+22|[Pause]||1|1000|Sleep|||||63|
+23|[Else]|Else|1|0|If_Statement|||||64|
+24|fillForm|_null := tipificacion|1|0|Function|||||67|
+25|[Pause]||1|1000|Sleep|||||68|
+26|[End If]|EndIf|1|0|If_Statement|||||69|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|ServicePython()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|text := """"|1|0|FuncParameter|||||1|
+2|[FunctionStart]|ServicePython|1|0|UserFunction|Local| / |||1|
+3|[Assign Variable]|tipificacion := ""|1|0|Variable|||||3|
+4|Run|http://54.234.133.155:3000/|1|100|Run|||||4|
+5|[Pause]||1|1000|Sleep|||||6|
+6|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111075121.png|1|100|ImageSearch|UntilFound|Window|||7|
+7|[Pause]||1|1000|Sleep|||||17|
+8|[Assign Variable]|Clipboard := %text%|1|0|Variable|||||18|
+9|[Pause]||1|1000|Sleep|||||19|
+10|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||20|
+11|[Pause]||1|2000|Sleep|||||22|
+12|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111074802.png|1|100|ImageSearch|UntilFound|Window|||23|
+13|[Pause]||1|1000|Sleep|||||33|
+14|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111082003.png|1|100|ImageSearch|UntilFound|Window|||34|
+15|[Pause]||1|1000|Sleep|||||44|
+16|Control + a|{Control Down}{a}{Control Up}|1|100|Send|||||45|
+17|[Pause]||1|1000|Sleep|||||47|
+18|Control + c|{Control Down}{c}{Control Up}|1|100|Send|||||48|
+19|[Pause]||1|1000|Sleep|||||50|
+20|[Assign Variable]|tipificacion := %Clipboard%|1|0|Variable|||||51|
+021|[MsgBox]|%tipificacion%|1|0|MsgBox|0||||52|
+22|[Pause]||1|1000|Sleep|||||54|
+23|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111132851.png|1|100|ImageSearch|UntilFound|Window|||56|
+24|[Pause]||1|1000|Sleep|||||66|
+025|WinClose||1|333|WinClose||React App - Google Chrome ahk_pid 2688|||67|
+26|[FuncReturn]|tipificacion|1|0|FuncReturn|||||70|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|fillForm()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|tipificacion|1|0|FuncParameter|||||1|
+2|[FunctionStart]|fillForm|1|0|UserFunction|Global| / |||1|
+03|[MsgBox]|%tipificacion%|1|0|MsgBox|0||||4|
+4|[Pause]||1|1000|Sleep|||||6|
+5|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111155105.png|1|100|ImageSearch|UntilFound|Window|||8|
+6|[Pause]||1|1000|Sleep|||||18|
+7|[LoopStart]|tipificacion`, ``,`, |1|0|LoopParse|||||19|
+08|[MsgBox]|%A_LoopField%`,%A_Index%|1|0|MsgBox|0||||21|
+9|[Pause]||1|1000|Sleep|||||23|
+10|[Assign Variable]|Clipboard := %A_LoopField%|1|0|Variable|||||25|
+11|Evaluate Expression|%A_Index%==1|1|0|If_Statement|||||26|
+12|[Pause]||1|1000|Sleep|||||28|
+13|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111160804.png|1|100|ImageSearch|UntilFound|Window|||29|
+14|[ElseIf] Evaluate Expression|%A_Index%==2|1|0|If_Statement|||||39|
+15|[Pause]||1|1000|Sleep|||||42|
+16|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111160944.png|1|100|ImageSearch|UntilFound|Window|||43|
+17|[ElseIf] Evaluate Expression|%A_Index%==3|1|0|If_Statement|||||53|
+18|[Pause]||1|1000|Sleep|||||56|
+19|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111160959.png|1|100|ImageSearch|UntilFound|Window|||57|
+20|[ElseIf] Evaluate Expression|%A_Index%==4|1|0|If_Statement|||||67|
+21|[Pause]||1|2000|Sleep|||||70|
+22|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201113165845.png|1|100|ImageSearch|UntilFound|Window|||71|
+23|[ElseIf] Evaluate Expression|%A_Index%==5|1|0|If_Statement|||||81|
+24|[Pause]||1|1000|Sleep|||||84|
+25|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201113085852.png|1|100|ImageSearch|UntilFound|Window|||85|
+26|Evaluate Expression|A_LoopField =="Cierre en primer contacto"|1|0|If_Statement|||||95|
+27|[Pause]||1|1000|Sleep|||||97|
+28|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201113142041.png|1|100|ImageSearch|UntilFound|Window|||98|
+29|[Else]|Else|1|0|If_Statement|||||108|
+30|[Pause]||1|1000|Sleep|||||111|
+31|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201113142136.png|1|100|ImageSearch|UntilFound|Window|||112|
+32|[End If]|EndIf|1|0|If_Statement|||||122|
+33|[End If]|EndIf|1|0|If_Statement|||||123|
+034|[Pause]||1|1000|Sleep|||||124|
+35|Control + v|{Control Down}{v}{Control Up}|1|100|Send|||||126|
+36|[Pause]||1|1000|Sleep|||||129|
+37|Enter|{Enter}|1|100|Send|||||130|
+38|[Pause]||1|1000|Sleep|||||132|
+039|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201111163739.png|1|100|ImageSearch|UntilFound|Window|||133|
+40|Enter|{Enter}|1|100|Send|||||144|
+41|[Pause]||1|1000|Sleep|||||147|
+42|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201124084352.png|1|0|ImageSearch||Window|||148|
+43|If Image/Pixel Found||1|0|If_Statement|||||150|
+44|[Pause]||1|500|Sleep|||||152|
+45|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201124084621.png|1|0|ImageSearch|UntilFound|Window|||153|
+46|[End If]|EndIf|1|0|If_Statement|||||162|
+47|[LoopEnd]|LoopEnd|1|0|Loop|||||163|
+48|[Pause]||1|1000|Sleep|||||164|
+49|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201120105259.png|1|0|ImageSearch|UntilFound|Window|||165|
+50|[Pause]||1|1000|Sleep|||||174|
+51|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||||175|
+52|[Pause]||1|1000|Sleep|||||176|
+53|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201124085444.png|1|0|ImageSearch||Window|||177|
+54|If Image/Pixel Found||1|0|If_Statement|||||179|
+055|[MsgBox]|ya se pregunto si desea permitir que esta pagina obtenga accesoa al porta...|1|0|MsgBox|0||||181|
+56|Tab|{Tab}|1|0|Send|||||183|
+57|[Pause]||1|1000|Sleep|||||185|
+58|Enter|{Enter}|1|0|Send|||||186|
+59|[Pause]||1|1000|Sleep|||||187|
+60|[End If]|EndIf|1|0|If_Statement|||||188|
+61|[Assign Variable]|marca := %Clipboard%|1|0|Variable|||||189|
+62|[Pause]||1|1000|Sleep|||||190|
+63|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201120105614.png|1|0|ImageSearch|UntilFound|Window|||191|
+64|[Pause]||1|1000|Sleep|||||200|
+65|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||||201|
+66|[Pause]||1|1000|Sleep|||||202|
+67|[Assign Variable]|correo := %Clipboard%|1|0|Variable|||||203|
+68|[Pause]||1|1000|Sleep|||||204|
+69|loginVtex|_null := marca,,correo,|1|0|Function|||||205|
+70|[Pause]||1|1000|Sleep|||||206|
+71|searchDataVitex|_null := correo|1|0|Function|||||207|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|loginVtex()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|marcaPagina|1|0|FuncParameter|||Se abre ventana con pagina de Marca correspondiente||1|
+2|[FuncParameter]|marcaMessage|1|0|FuncParameter|||Se abre ventana con pagina de Marca correspondiente||1|
+3|[FuncParameter]|correoPagina|1|0|FuncParameter|||Se abre ventana con pagina de Marca correspondiente||1|
+4|[FuncParameter]|correoMessage|1|0|FuncParameter|||Se abre ventana con pagina de Marca correspondiente||1|
+5|[FunctionStart]|loginVtex|1|0|UserFunction|Local| / |Se abre ventana con pagina de Marca correspondiente||1|
+6|[CommentBlock]|Se abre pagina de Marca correspondiente|0|1|CommentBlock|||||3|
+07|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201124093516.png|1|0|ImageSearch|UntilFound|Window|||6|
+08|[Pause]||1|2000|Sleep|||||16|
+09|WinActivate||1|333|WinActivate||Nueva pestaña - Internet Explorer|||17|
+010|[Pause]||1|3000|Sleep|||||19|
+011|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201124144734.png|1|0|ImageSearch|UntilFound|Window|||20|
+012|Run|https://nafnaf.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate``,desc|1|0|Run|||||29|
+013|[MsgBox]|%marcaPagina%|1|0|MsgBox|0||||30|
+14|Evaluate Expression|marcaPagina=="Chevignon"|1|0|If_Statement|||||31|
+15|Run|https://chevignon.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate``,desc|1|0|Run|||||34|
+016|Method:Navigate:|https://chevignon.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate,desc|1|0|IECOM_Set|:|LoadWait|||35|
+17|[ElseIf] Evaluate Expression|marcaPagina=="Americanino"|1|0|If_Statement|||||41|
+18|Run|https://americanino.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate``,desc|1|0|Run|||||45|
+019|Method:Navigate:|https://americanino.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate,desc|1|0|IECOM_Set|:|LoadWait|||46|
+20|[ElseIf] Evaluate Expression|marcaPagina=="NafNaf"|1|0|If_Statement|||||49|
+21|Run|https://nafnaf.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate``,desc|1|0|Run|||||53|
+022|Method:Navigate:|https://nafnaf.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate,desc|1|0|IECOM_Set|:|LoadWait|||54|
+23|[ElseIf] Evaluate Expression|marcaPagina=="Esprit"|1|0|If_Statement|||||57|
+24|Run|https://esprit.vtexcommercestable.com.br/admin/checkout/#/ordersorderBy=creationDate``,desc|1|0|Run|||||61|
+025|Method:Navigate:|https://esprit.vtexcommercestable.com.br/admin/checkout/#/ordersorderBy=creationDate,desc|1|0|IECOM_Set|:|LoadWait|||62|
+26|[ElseIf] Evaluate Expression|marcaPagina=="Lukshop"|1|0|If_Statement|||||65|
+27|Run|https://lukshop.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate``,desc|1|0|Run|||||69|
+028|Method:Navigate:|https://lukshop.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate,desc|1|0|IECOM_Set|:|LoadWait|||70|
+29|[ElseIf] Evaluate Expression|marcaPagina=="American Eagle"|1|0|If_Statement|||||73|
+030|Method:Navigate:|https://americaneagle.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate,desc|1|0|IECOM_Set|:|LoadWait|||77|
+31|Run|https://americaneagle.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate``,desc|1|0|Run|||||80|
+32|[ElseIf] Evaluate Expression|marcaPagina=="Rifle"|1|0|If_Statement|||||82|
+33|Run|https://rifle.vtexcommercestable.com.br/admin/checkout/#/orders?orderBy=creationDate``,desc|1|0|Run|||||85|
+34|[End If]|EndIf|1|0|If_Statement|||||86|
+35|[Pause]||1|8000|Sleep|||||87|
+36|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201125084001.png|2|0|ImageSearch||Window|||88|
+37|[Pause]||1|1000|Sleep|||||96|
+38|If Image/Pixel Found||1|0|If_Statement|||||97|
+39|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127113654.png|1|0|ImageSearch|UntilFound|Window|||99|
+40|[Pause]||1|1000|Sleep|||||108|
+41|[Assign Variable]|Clipboard := auxservclienteonline.cc@gco.com.co|1|0|Variable|||||109|
+42|Control + v|{Control Down}{v}{Control Up}|1|0|Send|||||110|
+43|[Pause]||1|500|Sleep|||||111|
+44|Enter|{Enter}|1|0|Send|||||112|
+45|[Pause]||1|500|Sleep|||||113|
+46|[CommentBlock]|Debe llamar a la funcion de login en outlook para extrar el codigo he ingresarlo.|0|1|CommentBlock|||||114|
+047|[MsgBox]|%ErrorLevel%|1|0|MsgBox|0||Debe llamar a la funcion de login en outlook para extrar el codigo he ingresarlo.||117|
+48|codOutlook|_null := |1|0|Function|||||119|
+049|[Else]|Else|1|0|If_Statement|||||121|
+050|[MsgBox]|No Encontre la imagen de ingresar codigo|1|0|MsgBox|0||||125|
+051|[Pause]||1|1000|Sleep|||||126|
+52|[End If]|EndIf|1|0|If_Statement|||||127|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|codOutlook()
+Context=None|
+Groups=Start:1
+1|[FunctionStart]|codOutlook|1|0|UserFunction|Local| / |||1|
+2|[Assign Variable]|email := auxservclienteonline.cc@gco.com.co|1|0|Variable|||||3|
+3|[Assign Variable]|password := Octubre29*/2018|1|0|Variable|||||4|
+4|[Assign Variable]|spanText := ""|1|0|Variable|||||5|
+5|[Assign Variable]|textIniSes := ""|1|0|Variable|||||6|
+6|[Assign Variable]|divTextIni := 0|1|0|Variable|||||7|
+07|[MsgBox]|%pathImg%|1|0|MsgBox|0||||8|
+08|Method:Navigate:|https://outlook.live.com/owa/|1|0|IECOM_Set|:|LoadWait|||10|
+9|[Pause]||1|1000|Sleep|||||15|
+10|Alt + Tab|{Alt Down}{Tab}{Alt Up}|1|0|Send|||||17|
+11|[Pause]||1|1000|Sleep|||||18|
+12|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201126163302.png|1|0|ImageSearch|UntilFound|Window|||19|
+13|[Pause]||1|3000|Sleep|||||28|
+14|Method:GoSearch:||1|0|IECOM_Set|:||||29|
+15|[Assign Variable]|Clipboard := https://outlook.live.com/owa/|1|0|Variable|||||30|
+16|[Pause]||1|1000|Sleep|||||31|
+17|Control + v|{Control Down}{v}{Control Up}|1|0|Send|||||32|
+18|[Pause]||1|1000|Sleep|||||33|
+19|Enter|{Enter}|1|0|Send|||||34|
+20|[Pause]||1|3000|Sleep|||||35|
+021|WinActivate||1|333|WinActivate||Outlook: calendario y correo electrónico personales gratuitos de Microsoft - Internet Explorer ahk_pid 4988|||36|
+022|[Pause]||1|1000|Sleep|||||39|
+23|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127082613.png|1|0|ImageSearch|UntilFound|Window|||40|
+024|Method:Click:ClassName||1|0|IECOM_Set|internal sign-in-link:1||||50|
+25|[Pause]||1|3000|Sleep|||||52|
+026|[LoopStart]|LoopStart|100|0|Loop|||||54|
+027|Property:InnerText:TagName|textIniSes|1|0|IECOM_Get|DIV:%A_Index%||||57|
+028|Evaluate Expression|textIniSes=="Usar otra cuenta"|1|0|If_Statement|||||58|
+029|[MsgBox]|%textIniSes%`,%A_Index%|1|0|MsgBox|0||||60|
+030|[Assign Variable]|divTextIni := %A_Index%|1|0|Variable|||||61|
+031|Method:Click:TagName||1|0|IECOM_Set|DIV:%divTextIni%||||62|
+032|Break||1|0|Break|||||63|
+033|[End If]|EndIf|1|0|If_Statement|||||64|
+034|[LoopEnd]|LoopEnd|1|0|Loop|||||65|
+035|[MsgBox]|%divTextIni%|1|0|MsgBox|0||||66|
+036|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201026134013.png|1|0|ImageSearch|UntilFound|Window|||67|
+037|[Pause]||1|2000|Sleep|||||76|
+38|Continue, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127084018.png|1|0|ImageSearch||Window|||77|
+39|[Assign Variable]|inicioSesion1 := %ErrorLevel%|1|0|Variable|||||81|
+40|Continue, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201126133742.png|1|0|ImageSearch||Window|||82|
+41|[Assign Variable]|iniSes2 := %ErrorLevel%|1|0|Variable|||||85|
+42|Evaluate Expression|inicioSesion1 ==0   iniSes2 ==0|1|0|If_Statement|||||86|
+43|[Pause]||1|1000|Sleep|||||88|
+44|.|{.}|1|0|Send|||||89|
+45|[Pause]||1|1000|Sleep|||||90|
+46|Backspace|{Backspace}|1|0|Send|||||91|
+47|[Pause]||1|1000|Sleep|||||92|
+48|[Assign Variable]|Clipboard := %email%|1|0|Variable|||||93|
+49|[Pause]||1|300|Sleep|||||94|
+50|Control + v|{Control Down}{v}{Control Up}|1|0|Send|||||95|
+51|[Pause]||1|1000|Sleep|||||96|
+52|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127084605.png|1|0|ImageSearch|UntilFound|Window|||97|
+053|Method:Click:ID||1|0|IECOM_Set|idSIButton9:|LoadWait|||106|
+54|[Pause]||1|2000|Sleep|||||109|
+55|.|{.}|1|0|Send|||||111|
+56|[Pause]||1|1000|Sleep|||||112|
+57|Backspace|{Backspace}|1|0|Send|||||113|
+58|[Pause]||1|1000|Sleep|||||114|
+59|[Assign Variable]|Clipboard := %password%|1|0|Variable|||||115|
+60|[Pause]||1|300|Sleep|||||116|
+61|Control + v|{Control Down}{v}{Control Up}|1|0|Send|||||117|
+62|[Pause]||1|1000|Sleep|||||118|
+63|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127084728.png|1|0|ImageSearch|UntilFound|Window|||119|
+064|Method:Click:ID||1|0|IECOM_Set|idSIButton9:|LoadWait|||128|
+65|[Pause]||1|5000|Sleep|||||131|
+66|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201126121533.png|1|0|ImageSearch||Window|||133|
+67|If Image/Pixel Found||1|0|If_Statement|||||135|
+68|[Pause]||1|1000|Sleep|||||137|
+69|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201126121633.png|1|0|ImageSearch|UntilFound|Window|||138|
+70|[Pause]||1|1000|Sleep|||||147|
+071|Method:Click:TagName||1|0|IECOM_Set|INPUT:7|LoadWait|||148|
+72|[End If]|EndIf|1|0|If_Statement|||||151|
+73|[Pause]||1|1000|Sleep|||||153|
+74|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201125164120.png|2|0|ImageSearch|UntilFound|Window|||154|
+75|[Pause]||1|4000|Sleep|||||163|
+76|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127105652.png|1|0|ImageSearch|UntilFound|Window|||164|
+77|[Pause]||1|500|Sleep|||||173|
+78|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||174|
+79|[Pause]||1|15000|Sleep|||||176|
+80|[LoopStart]|LoopStart|5|0|Loop|||||177|
+81|Left Click, Continue, FoundX, FoundY|0, 0, 1280, 1024, 0xDD1659, 0, Fast RGB|1|0|PixelSearch||Window|||179|
+82|If Image/Pixel Found||1|0|If_Statement|||||183|
+83|[Pause]||1|300|Sleep|||||185|
+84|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||186|
+85|Break||1|0|Break|||||188|
+86|[End If]|EndIf|1|0|If_Statement|||||189|
+87|[LoopEnd]|LoopEnd|1|0|Loop|||||190|
+88|[Pause]||1|2000|Sleep|||||191|
+89|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||||192|
+90|[Pause]||1|2000|Sleep|||||193|
+91|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127111232.png|1|0|ImageSearch|UntilFound|Window|||194|
+92|[Pause]||1|2000|Sleep|||||203|
+93|Alt + Tab|{Alt Down}{Tab}{Alt Up}|1|0|Send|||||204|
+94|[Pause]||1|1000|Sleep|||||205|
+95|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127113935.png|1|0|ImageSearch|UntilFound|Window|||206|
+96|[Pause]||1|1000|Sleep|||||215|
+97|Control + v|{Control Down}{v}{Control Up}|1|0|Send|||||216|
+98|[Pause]||1|500|Sleep|||||217|
+99|Enter|{Enter}|1|0|Send|||||218|
+100|[Pause]||1|2000|Sleep|||||219|
+0101|[MsgBox]|se iniciara el Loop|1|0|MsgBox|0||||220|
+0102|[LoopStart]|LoopStart|500|0|Loop|||||222|
+0103|Property:InnerText:TagName|spanText|1|0|IECOM_Get|SPAN:%A_Index%||||224|
+0104|[MsgBox]|%spanText%|1|0|MsgBox|0||||225|
+0105|Evaluate Expression|spanText=="códigos de acceso"|1|0|If_Statement|||||226|
+0106|Method:Click:Name||1|0|IECOM_Set|SPAN:%A_Index%||||228|
+0107|Break||1|0|Break|||||229|
+0108|[End If]|EndIf|1|0|If_Statement|||||230|
+0109|[LoopEnd]|LoopEnd|1|0|Loop|||||231|
+110|[Pause]||1|2000|Sleep|||||232|
+111|[End If]|EndIf|1|0|If_Statement|||||234|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|Prueba
+Context=None|
+Groups=Start:1
+1|Method:Click:TagName||1|0|IECOM_Set|A:8||||1|
+2|Method:Click:ClassName||1|0|IECOM_Set|internal sign-in-link:1||||5|
+3|Method:Navigate:|https://gco.crm2.dynamics.com/|1|0|IECOM_Set|:|LoadWait|||6|
+04|[Pause]||1|1000|Sleep|||||8|
+05|Alt + Tab|{Alt Down}{Tab}{Alt Up}|1|0|Send|||||10|
+6|codOutlook|_null := |1|0|Function|||||11|
+7|Left Click, Continue, FoundX, FoundY|0, 0, 1280, 1024, 0xDD1659, 0, Fast RGB|1|0|PixelSearch|UntilFound|Window|||13|
+8|[Pause]||1|300|Sleep|||||21|
+9|Left Move & Click|%FoundX%, %FoundY% Left, 1|1|10|Click|||||22|
+10|Right Click, Continue, FoundX, FoundY|0, 0, 1280, 1024, 0xA4B8CA, 0, Fast RGB|1|0|PixelSearch|UntilFound|Window|||24|
+
+[PMC Code v5.3.7]|||1|Window,2,Fast,0,1,Input,-1,-1,1|1|searchDataVitex()
+Context=None|
+Groups=Start:1
+1|[FuncParameter]|correo|1|0|FuncParameter|||||1|
+2|[FunctionStart]|searchDataVitex|1|0|UserFunction|Local| / |||1|
+3|Continue, Continue, FoundX, FoundY, 0|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127153623.png|1|0|ImageSearch||Window|||3|
+4|If Image/Pixel Found||1|0|If_Statement|||||5|
+5|[Pause]||1|1000|Sleep|||||7|
+6|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127153907.png|1|0|ImageSearch|UntilFound|Window|||8|
+7|[End If]|EndIf|1|0|If_Statement|||||17|
+8|[Pause]||1|1000|Sleep|||||18|
+9|Left Click, Continue, FoundX, FoundY, 1|600, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201130094010.png|1|0|ImageSearch||Window|||19|
+10|[Pause]||1|1000|Sleep|||||24|
+11|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201130093449.png|1|0|ImageSearch||Window|||25|
+12|If Image/Pixel Found||1|0|If_Statement|||||30|
+13|[Pause]||1|500|Sleep|||||32|
+14|Left Click, Continue, FoundX, FoundY, 1|600, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201130093656.png|1|0|ImageSearch|UntilFound|Window|||33|
+15|[Pause]||1|3000|Sleep|||||42|
+16|[End If]|EndIf|1|0|If_Statement|||||43|
+17|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127154048.png|1|0|ImageSearch|UntilFound|Window|||44|
+18|[Pause]||1|6000|Sleep|||||53|
+19|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127163506.png|1|0|ImageSearch|UntilFound|Window|||54|
+20|[Pause]||1|1000|Sleep|||||63|
+21|[Assign Variable]|Clipboard := %correo%|1|0|Variable|||||64|
+22|[Pause]||1|300|Sleep|||||65|
+23|Control + v|{Control Down}{v}{Control Up}|1|0|Send|||||66|
+24|[Pause]||1|500|Sleep|||||67|
+25|Enter|{Enter}|1|0|Send|||||68|
+26|[Pause]||1|6000|Sleep|||||69|
+27|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127160726.png|1|0|ImageSearch||Window|||70|
+28|[Pause]||1|2000|Sleep|||||75|
+029|Left Click, Continue, FoundX, FoundY, 1|0, 0, 1280, 1024, C:\Users\Inter-Telco\Desktop\TipificacionAndes\Img\Screen_20201127161016.png|1|0|ImageSearch|UntilFound|Window|||76|
+30|Left Click, Continue, FoundX, FoundY|0, 0, 1280, 1024, 0xA4B8CA, 0, Fast RGB|1|0|PixelSearch|UntilFound|Window|||86|
+31|[Pause]||1|2000|Sleep|||||95|
+32|Control + a|{Control Down}{a}{Control Up}|1|0|Send|||||96|
+33|[Pause]||1|1000|Sleep|||||97|
+34|Control + c|{Control Down}{c}{Control Up}|1|0|Send|||||98|
+35|[Pause]||1|1000|Sleep|||||99|
+
